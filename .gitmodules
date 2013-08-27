@@ -1,0 +1,3 @@
+[submodule "cookbooks/cookbook-openstack-compute"]
+	path = cookbooks/cookbook-openstack-compute
+	url = https://github.com/stackforge/cookbook-openstack-compute.git
