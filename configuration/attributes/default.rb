@@ -13,12 +13,7 @@ default["openstack"]["db"]["compute"]["host"] = "10.49.117.250"
 
 #Keystone attributes
 default['openstack']['endpoints']['identity-admin']['host'] = "10.49.117.243"
-default['openstack']['endpoints']['identity-admin']['scheme'] = "http"
-default['openstack']['endpoints']['identity-admin']['port'] = "35357"
-
 default['openstack']['endpoints']['identity-api']['host'] = "10.49.117.243"
-default['openstack']['endpoints']['identity-api']['scheme'] = "http"
-default['openstack']['endpoints']['identity-api']['port'] = "5000"
 
 #Keystone attribute for nova
 default["openstack"]["identity"]["admin_user"] = "admin"
@@ -30,11 +25,11 @@ default['openstack']['endpoints']['image-registry']['host'] = "10.49.117.243"
 default['openstack']['endpoints']['image-api']['host'] = "10.49.117.243"
 
 #Nova Endpoint (Keystone Service Endpoint)
-default['openstack']['endpoints']['compute-api']['host'] = "eth0"
-default['openstack']['endpoints']['compute-ec2-api']['host'] = "eth0"
-default['openstack']['endpoints']['compute-ec2-admin']['host'] = "eth0"
-default['openstack']['endpoints']['compute-xvpvnc']['host'] = "eth0"
-default['openstack']['endpoints']['compute-novnc']['host'] = "eth0"
+default['openstack']['endpoints']['compute-api']['host'] = default['openstack']['endpoints']['compute-api']['host'] = node['network']['interfaces']['eth0']['addresses'].to_hash.select {|addr, info| info["family"] == "inet"}.flatten.first
+default['openstack']['endpoints']['compute-ec2-api']['host'] = default['openstack']['endpoints']['compute-api']['host'] = node['network']['interfaces']['eth0']['addresses'].to_hash.select {|addr, info| info["family"] == "inet"}.flatten.first
+default['openstack']['endpoints']['compute-ec2-admin']['host'] = default['openstack']['endpoints']['compute-api']['host'] = node['network']['interfaces']['eth0']['addresses'].to_hash.select {|addr, info| info["family"] == "inet"}.flatten.first
+default['openstack']['endpoints']['compute-xvpvnc']['host'] = default['openstack']['endpoints']['compute-api']['host'] = node['network']['interfaces']['eth0']['addresses'].to_hash.select {|addr, info| info["family"] == "inet"}.flatten.first
+default['openstack']['endpoints']['compute-novnc']['host'] = default['openstack']['endpoints']['compute-api']['host'] = node['network']['interfaces']['eth0']['addresses'].to_hash.select {|addr, info| info["family"] == "inet"}.flatten.first
 
 
 # The name of the Chef role that knows about the message queue server
