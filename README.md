@@ -185,11 +185,6 @@ knife role edit nova_base
     "recipe[apt]",
     "recipe[mysql::client]",
     "recipe[openstack-common]",
-    "recipe[openstack-network::server]",
-    "recipe[openstack-network::openvswitch]",
-    "recipe[openstack-network::l3_agent]",
-    "recipe[openstack-network::metadata_agent]",
-    "recipe[openstack-network::identity_registration]",
     "recipe[openstack-compute::api-ec2]",
     "recipe[openstack-compute::api-metadata]",
     "recipe[openstack-compute::api-os-compute]",
@@ -201,7 +196,8 @@ knife role edit nova_base
     "recipe[openstack-compute::nova-common]",
     "recipe[openstack-compute::nova-setup]",
     "recipe[openstack-compute::scheduler]",
-    "recipe[openstack-compute::vncproxy]"
+    "recipe[openstack-compute::vncproxy]",
+    "recipe[openstack-compute::conductor]"
   ],
   "env_run_lists": {
   }
