@@ -86,11 +86,6 @@ Add Keystone service endpoints, used for authorisation and authentication.
 default['openstack']['endpoints']['identity-admin']['host'] = "10.49.117.243"
 default['openstack']['endpoints']['identity-api']['host'] = "10.49.117.243"
 ```
-Add keystone credentials
-```bash
-default["openstack"]["identity"]["admin_user"] = "admin"
-default["openstack"]["identity"]["admin_tenant_name"] = "admin"
-```
 Add Glance service endpoint
 ```bash
 default['openstack']['endpoints']['image-registry']['host'] = "10.49.117.243"
@@ -141,6 +136,26 @@ Amend the compute bind addresses, to the external network interface so the IP ca
 default["openstack"]["compute"]["xvpvnc_proxy"]["bind_interface"] = "eth0"
 default["openstack"]["compute"]["novnc_proxy"]["bind_interface"] = "eth0"
 default["openstack"]["compute"]["libvirt"]["bind_interface"] = "eth0"
+```
+
+###Recipe Change
+
+Amendment has been added to the nova-common recipe (/recipes/nova-common.rb), as it fails to pick up admin tenant name and user credentials consistently, this has been replaced from keystone to node.
+
+change
+```bash
+ksadmin_tenant_name = keystone["openstack"]["identity"]["admin_tenant_name"]
+ksadmin_user = keystone["openstack"]["identity"]["admin_user"]
+```
+to 
+```bash
+ksadmin_tenant_name = node["openstack"]["identity"]["admin_tenant_name"]
+ksadmin_user = node["openstack"]["identity"]["admin_user"]
+```
+In addtion to this change the below keystone credentials attributes have been added to the attribute file (attributes/default.rb).
+```bash
+default["openstack"]["identity"]["admin_user"] = "admin"
+default["openstack"]["identity"]["admin_tenant_name"] = "admin"
 ```
 
 ###Compute Cluster Deployment
