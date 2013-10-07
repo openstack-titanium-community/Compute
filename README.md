@@ -12,11 +12,11 @@ Nova Commands<br>http://docs.openstack.org/user-guide/content/novaclient_command
 
 ###Requirements
 
-One node with Chef Server 0.10.0 or higher required. Three nodes with Linux environment, these will be used to deploy the recipes for cookbook OpenStack compute. One node with chef-client installed with the chef repository and local cookbooks.
+Chef Server 0.10.0 or higher required. One node with chef-client installed with the chef repository and local cookbooks. Four nodes are required with a Linux environment, three nodes will be used to deploy the recipes for cookbook OpenStack compute in a 3 node cluster. while 1 node will have all dependant openstack services installed and configured. 
 
 ###Dependencies
 
-The following dependencies are required for cookbook OpenStack compute. 
+The following dependencies are required for cookbook OpenStack compute:
 
 * openstack common
 * openstack identity
@@ -73,7 +73,7 @@ use git to get clone of cookbook openstack compute
 ```bash
 git clone http://github.com/stackforge/cookbook-openstack-compute.git
 ```
-Edit file default.rb located at openstack-image/attributes/default.rb and add configuration to set this deployment in a developer mode, this will allow username and passwords to be default i.e. username nova and password nova.
+Edit file default.rb located at attributes/default.rb and add configuration to set this deployment in a developer mode, this will allow username and passwords to be default i.e. username nova and password nova.
 ```bash
 default["openstack"]["developer_mode"] = true
 ```
